@@ -15,8 +15,8 @@
   --color-blue: #0766ad;
   --color-teal: #29adb2;
   --color-green: #c5e898;
-  --color-grey: #ddd;
-  --color-white: #f1f1f1;
+  --color-grey: #eee;
+  --color-white: #fff;
 }
 
 body {
@@ -61,4 +61,6 @@ body {
 
 .form {
   flex: 1;
+  background-color: var(--color-white);
+  background-image: url("./assets/graph-paper.svg");
 }
