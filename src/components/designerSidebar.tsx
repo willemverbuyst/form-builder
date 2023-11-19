@@ -1,5 +1,5 @@
+import SidebarBtnElement from "./buttons/sidebarBtn";
 import { FormElements } from "./formElememtType";
-import SidebarBtnElement from "./sidebarBtnElement";
 
 export default function DesignerSidebar() {
   return (

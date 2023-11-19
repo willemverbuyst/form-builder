@@ -20,7 +20,6 @@ export default function Designer() {
         )}
         {droppable.isOver && <div className="droppable"></div>}
       </div>
-      ;
     </section>
   );
 }

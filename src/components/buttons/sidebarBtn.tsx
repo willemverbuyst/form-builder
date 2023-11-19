@@ -1,5 +1,5 @@
 import { useDraggable } from "@dnd-kit/core";
-import { FormElement } from "./formElememtType";
+import { FormElement } from "../formElememtType";
 
 export default function SidebarBtnElement({
   formElement,
@@ -17,11 +17,12 @@ export default function SidebarBtnElement({
 
   return (
     <button
+      className="btn"
       ref={draggable.setNodeRef}
       {...draggable.listeners}
       {...draggable.attributes}
     >
-      <Icon />
+      <Icon className="btn-icon" />
       <p>{label}</p>
     </button>
   );
@@ -36,7 +37,7 @@ export function SidebarBtnElementDragOverlay({
 
   return (
     <button>
-      <Icon />
+      <Icon className="btn-icon" />
       <p>{label}</p>
     </button>
   );
