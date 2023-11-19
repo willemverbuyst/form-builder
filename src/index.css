@@ -23,6 +23,7 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  background-image: url("./assets/graph-paper.svg");
 }
 
 .main {
@@ -62,5 +63,15 @@ body {
 .form {
   flex: 1;
   background-color: var(--color-white);
-  background-image: url("./assets/graph-paper.svg");
+}
+
+.drop-instruction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.droppable {
+  height: 5rem;
+  background-color: var(--color-green);
 }
