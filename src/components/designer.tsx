@@ -1,7 +1,10 @@
 import { useDroppable } from "@dnd-kit/core";
 import DesignerSidebar from "./designerSidebar";
+import useDesigner from "./hooks/useDesigner";
 
 export default function Designer() {
+  const { elements, addElement } = useDesigner();
+
   const droppable = useDroppable({
     id: "form-drop-area",
     data: {

@@ -1,12 +1,15 @@
+import DesignerContextProvider from "./components/context/designerContext";
 import FormBuilder from "./components/formBuilder";
 import Header from "./components/header";
 
 function App() {
   return (
-    <main className="main">
-      <Header />
-      <FormBuilder />
-    </main>
+    <DesignerContextProvider>
+      <main className="main">
+        <Header />
+        <FormBuilder />
+      </main>
+    </DesignerContextProvider>
   );
 }
 
