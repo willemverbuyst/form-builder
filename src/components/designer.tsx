@@ -1,4 +1,5 @@
 import { DragEndEvent, useDndMonitor, useDroppable } from "@dnd-kit/core";
+import { useState } from "react";
 import { idGenerator } from "../lib/idGenerator";
 import DesignerSidebar from "./designerSidebar";
 import {
@@ -51,21 +52,72 @@ export default function Designer() {
             <h3>Drop here</h3>
           </div>
         )}
-        {droppable.isOver && <div className="droppable"></div>}
-        {elements.length > 0 && (
-          <div>
-            {elements.map((element) => (
-              <DesignerElementWrapper key={element.id} element={element} />
-            ))}
-          </div>
-        )}
+        <div className="designer-element-wrapper__container">
+          {droppable.isOver && <div className="droppable"></div>}
+          {elements.length > 0 && (
+            <>
+              {elements.map((element) => (
+                <DesignerElementWrapper key={element.id} element={element} />
+              ))}
+            </>
+          )}
+        </div>
       </div>
     </section>
   );
 }
 
 function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
+  const [mouseIsOver, setMouseIsOver] = useState(false);
+
+  const topHalf = useDroppable({
+    id: element.id + "-top",
+    data: {
+      type: element.type,
+      elementId: element.id,
+      isTopHalfDesignerElement: true,
+    },
+  });
+
+  const bottomHalf = useDroppable({
+    id: element.id + "-bottom",
+    data: {
+      type: element.type,
+      elementId: element.id,
+      isBottomHalfDesignerElement: true,
+    },
+  });
+
   const DesignerElement = FormElements[element.type].designerComponent;
 
-  return <DesignerElement elementInstance={element} />;
+  return (
+    <div
+      className="designer-element-wrapper"
+      onMouseEnter={() => {
+        setMouseIsOver(true);
+      }}
+      onMouseLeave={() => {
+        setMouseIsOver(false);
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+    >
+      <div ref={topHalf.setNodeRef} className="designer-element-wrapper__top" />
+      <div
+        ref={bottomHalf.setNodeRef}
+        className="designer-element-wrapper__bottom"
+      />
+      {mouseIsOver && (
+        <>
+          <div className="designer-element-wrapper__mouse-is-over">
+            <p>Click for properties or drag to move</p>
+          </div>
+        </>
+      )}
+      <div>
+        <DesignerElement elementInstance={element} />
+      </div>
+    </div>
+  );
 }
