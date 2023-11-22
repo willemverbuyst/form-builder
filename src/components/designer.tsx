@@ -1,13 +1,43 @@
 import { DragEndEvent, useDndMonitor, useDroppable } from "@dnd-kit/core";
-import { useState } from "react";
+import styled from "styled-components";
 import { idGenerator } from "../lib/idGenerator";
-import DesignerSidebar from "./designerSidebar";
-import {
-  ElementsType,
-  FormElementInstance,
-  FormElements,
-} from "./formElememtType";
+import Card from "./card";
+import DesignerElementWrapper from "./designerElementWrapper";
+import { ElementsType, FormElements } from "./formElememtType";
 import useDesigner from "./hooks/useDesigner";
+import Sidebar from "./sidebar";
+
+const Section = styled.section`
+  width: 100%;
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+`;
+
+const Container = styled.div`
+  flex: 1;
+  background-color: var(--color-white);
+  padding: 0.5rem;
+  gap: 1rem;
+`;
+
+const DropInstruction = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Droppable = styled.div`
+  height: 5rem;
+  background-color: var(--color-grey);
+  border-radius: 5px;
+`;
+
+const DesignerElements = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
 
 export default function Designer() {
   const { elements, addElement } = useDesigner();
@@ -44,80 +74,27 @@ export default function Designer() {
   });
 
   return (
-    <section className="form-section">
-      <DesignerSidebar />
-      <div className="card form" ref={droppable.setNodeRef}>
-        {!droppable.isOver && elements.length === 0 && (
-          <div className="drop-instruction">
-            <h3>Drop here</h3>
-          </div>
-        )}
-        <div className="designer-element-wrapper__container">
-          {droppable.isOver && <div className="droppable"></div>}
-          {elements.length > 0 && (
-            <>
-              {elements.map((element) => (
-                <DesignerElementWrapper key={element.id} element={element} />
-              ))}
-            </>
+    <Section>
+      <Sidebar />
+      <Card customStyles={{ flex: 1 }}>
+        <Container ref={droppable.setNodeRef}>
+          {!droppable.isOver && elements.length === 0 && (
+            <DropInstruction>
+              <h3>Drop here</h3>
+            </DropInstruction>
           )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
-  const [mouseIsOver, setMouseIsOver] = useState(false);
-
-  const topHalf = useDroppable({
-    id: element.id + "-top",
-    data: {
-      type: element.type,
-      elementId: element.id,
-      isTopHalfDesignerElement: true,
-    },
-  });
-
-  const bottomHalf = useDroppable({
-    id: element.id + "-bottom",
-    data: {
-      type: element.type,
-      elementId: element.id,
-      isBottomHalfDesignerElement: true,
-    },
-  });
-
-  const DesignerElement = FormElements[element.type].designerComponent;
-
-  return (
-    <div
-      className="designer-element-wrapper"
-      onMouseEnter={() => {
-        setMouseIsOver(true);
-      }}
-      onMouseLeave={() => {
-        setMouseIsOver(false);
-      }}
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-    >
-      <div ref={topHalf.setNodeRef} className="designer-element-wrapper__top" />
-      <div
-        ref={bottomHalf.setNodeRef}
-        className="designer-element-wrapper__bottom"
-      />
-      {mouseIsOver && (
-        <>
-          <div className="designer-element-wrapper__mouse-is-over">
-            <p>Click for properties or drag to move</p>
-          </div>
-        </>
-      )}
-      <div>
-        <DesignerElement elementInstance={element} />
-      </div>
-    </div>
+          <DesignerElements>
+            {droppable.isOver && <Droppable />}
+            {elements.length > 0 && (
+              <>
+                {elements.map((element) => (
+                  <DesignerElementWrapper key={element.id} element={element} />
+                ))}
+              </>
+            )}
+          </DesignerElements>
+        </Container>
+      </Card>
+    </Section>
   );
 }

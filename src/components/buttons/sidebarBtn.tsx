@@ -17,7 +17,6 @@ export default function SidebarBtnElement({
 
   return (
     <button
-      className="btn"
       ref={draggable.setNodeRef}
       {...draggable.listeners}
       {...draggable.attributes}

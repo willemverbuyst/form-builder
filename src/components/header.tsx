@@ -1,10 +1,25 @@
+import styled from "styled-components";
 import SaveBtn from "./buttons/saveBtn";
+import Card from "./card";
+
+const Wrapper = styled.section`
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const HeaderText = styled.h1`
+  margin: 0;
+`;
 
 export default function Header() {
   return (
-    <div className="card header">
-      <h1>Form-Builder</h1>
-      <SaveBtn />
-    </div>
+    <Card>
+      <Wrapper>
+        <HeaderText>Form-Builder</HeaderText>
+        <SaveBtn />
+      </Wrapper>
+    </Card>
   );
 }

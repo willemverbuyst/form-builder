@@ -1,9 +1,14 @@
 import { IoSaveOutline } from "react-icons/io5";
+import styled from "styled-components";
+
+const Button = styled.button`
+  width: 4rem;
+`;
 
 export default function SaveBtn() {
   return (
-    <button className="btn btn-save">
+    <Button>
       <IoSaveOutline className="btn-icon" />
-    </button>
+    </Button>
   );
 }

@@ -1,5 +1,24 @@
+import styled from "styled-components";
 import { CustomInstance } from "../fields/textField";
 import { FormElementInstance } from "../formElememtType";
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.2rem;
+`;
+
+const HelperText = styled.p`
+  font-size: 0.7rem;
+  color: #aaa;
+  font-style: italic;
+  margin: 0;
+`;
+
+const TextInput = styled.input`
+  width: 20rem;
+`;
 
 export default function DesignerComponent({
   elementInstance,
@@ -11,14 +30,14 @@ export default function DesignerComponent({
 
   if (typeof label === "string") {
     return (
-      <div className="designer-component">
+      <Section>
         <label>
           {label}
           {required && "*"}
         </label>
-        <input readOnly disabled placeholder={placeholder} />
-        {helperText && <p>{helperText}</p>}
-      </div>
+        <TextInput readOnly disabled placeholder={placeholder} />
+        {helperText && <HelperText>{helperText}</HelperText>}
+      </Section>
     );
   }
 

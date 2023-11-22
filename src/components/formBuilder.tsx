@@ -6,7 +6,6 @@ export default function FormBuilder() {
   return (
     <DndContext>
       <Designer />
-
       <DragOverlayWrapper />
     </DndContext>
   );
