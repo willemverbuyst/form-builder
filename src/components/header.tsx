@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import SaveBtn from "./buttons/saveBtn";
-import Card from "./card";
+import Card from "./wrappers/card";
 
 const Wrapper = styled.section`
   padding: 0.5rem;

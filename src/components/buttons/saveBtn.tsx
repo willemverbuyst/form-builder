@@ -1,14 +1,13 @@
 import { IoSaveOutline } from "react-icons/io5";
-import styled from "styled-components";
-
-const Button = styled.button`
-  width: 4rem;
-`;
+import Button from "../wrappers/button";
+import Icon from "../wrappers/icon";
 
 export default function SaveBtn() {
   return (
-    <Button>
-      <IoSaveOutline className="btn-icon" />
+    <Button customStyles={{ width: "4rem" }}>
+      <Icon>
+        <IoSaveOutline />
+      </Icon>
     </Button>
   );
 }

@@ -1,11 +1,11 @@
 import { DragEndEvent, useDndMonitor, useDroppable } from "@dnd-kit/core";
 import styled from "styled-components";
 import { idGenerator } from "../lib/idGenerator";
-import Card from "./card";
 import DesignerElementWrapper from "./designerElementWrapper";
 import { ElementsType, FormElements } from "./formElememtType";
 import useDesigner from "./hooks/useDesigner";
 import Sidebar from "./sidebar";
+import Card from "./wrappers/card";
 
 const Section = styled.section`
   width: 100%;

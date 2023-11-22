@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import SidebarBtnElement from "./buttons/sidebarBtn";
-import Card from "./card";
 import { FormElements } from "./formElememtType";
+import Card from "./wrappers/card";
 
 const Section = styled.section`
   width: 10rem;
