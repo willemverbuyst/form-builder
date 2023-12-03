@@ -1,7 +1,9 @@
 import { useDroppable } from "@dnd-kit/core";
 import { useState } from "react";
 import styled from "styled-components";
+import DeleteBtn from "./buttons/deleteBtn";
 import { FormElementInstance, FormElements } from "./formElememtType";
+import useDesigner from "./hooks/useDesigner";
 
 const Bottom = styled.div`
   width: 100%;
@@ -19,7 +21,7 @@ const Top = styled.div`
   border-radius: 5px 5px 0 0;
 `;
 
-const MouseIsOver = styled.div`
+const MouseIsOverText = styled.div`
   position: absolute;
   display: flex;
   width: 100%;
@@ -29,10 +31,21 @@ const MouseIsOver = styled.div`
   opacity: 0.7;
 `;
 
+const MouseIsOverBtn = styled.div`
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+`;
+
 const Wrapper = styled.section`
   background-color: var(--color-grey);
   border-radius: 10px;
   position: relative;
+  height: 10rem;
+
+  &.mouse {
+    border: 2px solid var(--color-teal);
+  }
 `;
 
 export default function DesignerElementWrapper({
@@ -40,6 +53,7 @@ export default function DesignerElementWrapper({
 }: {
   element: FormElementInstance;
 }) {
+  const { removeElement } = useDesigner();
   const [mouseIsOver, setMouseIsOver] = useState(false);
 
   const topHalf = useDroppable({
@@ -73,14 +87,18 @@ export default function DesignerElementWrapper({
       onClick={(e) => {
         e.stopPropagation();
       }}
+      className={mouseIsOver ? "mouse" : ""}
     >
       <Top ref={topHalf.setNodeRef} />
       <Bottom ref={bottomHalf.setNodeRef} />
       {mouseIsOver && (
         <>
-          <MouseIsOver>
+          <MouseIsOverText>
             <p>Click for properties or drag to move</p>
-          </MouseIsOver>
+          </MouseIsOverText>
+          <MouseIsOverBtn>
+            <DeleteBtn handleClick={() => removeElement(element.id)} />
+          </MouseIsOverBtn>
         </>
       )}
       <div>

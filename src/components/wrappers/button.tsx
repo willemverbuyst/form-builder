@@ -17,8 +17,17 @@ const StyledBtn = styled.button`
 type ButtonProps = {
   children: ReactNode;
   customStyles?: React.CSSProperties;
+  handleClick?: () => void;
 };
 
-export default function Button({ customStyles, children }: ButtonProps) {
-  return <StyledBtn style={customStyles}>{children}</StyledBtn>;
+export default function Button({
+  customStyles,
+  children,
+  handleClick,
+}: ButtonProps) {
+  return (
+    <StyledBtn style={customStyles} onClick={handleClick}>
+      {children}
+    </StyledBtn>
+  );
 }

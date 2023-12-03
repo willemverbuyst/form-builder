@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 type IconProps = {

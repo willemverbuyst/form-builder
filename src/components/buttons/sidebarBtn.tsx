@@ -2,6 +2,7 @@ import { useDraggable } from "@dnd-kit/core";
 import { FormElement } from "../formElememtType";
 import Button from "../wrappers/button";
 import Icon from "../wrappers/icon";
+import Label from "../wrappers/label";
 
 export default function SidebarBtnElement({
   formElement,
@@ -27,7 +28,7 @@ export default function SidebarBtnElement({
         <Icon>
           <BtnElementIcon className="btn-icon" />
         </Icon>
-        <p>{label}</p>
+        <Label>{label}</Label>
       </Button>
     </div>
   );
