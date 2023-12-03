@@ -48,13 +48,13 @@ const Wrapper = styled.section`
 `;
 const DesignerElementSection = styled.section`
   &.topHalf {
-    border-top: 5px solid var(--color-grey);
+    border-top: 5px solid var(--color-grey-dark);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
 
   &.bottomHalf {
-    border-bottom: 5px solid var(--color-grey);
+    border-bottom: 5px solid var(--color-grey-dark);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }

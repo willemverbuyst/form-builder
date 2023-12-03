@@ -11,7 +11,7 @@ const Section = styled.section`
 
 const HelperText = styled.p`
   font-size: 0.7rem;
-  color: #aaa;
+  color: var(--color-grey-dark);
   font-style: italic;
   margin: 0;
 `;

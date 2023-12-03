@@ -16,7 +16,6 @@ const Section = styled.section`
 
 const Container = styled.div`
   flex: 1;
-  border: 2px dashed var(--color-blue-light);
   padding: 0.5rem;
   gap: 1rem;
   height: 50%;

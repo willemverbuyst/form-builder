@@ -8,7 +8,7 @@ import useDesigner from "./hooks/useDesigner";
 const Wrapper = styled.section`
   background-color: var(--color-grey);
   border-radius: 10px;
-  opacity: 0.5;
+  opacity: 0.7;
 `;
 
 function DragOverlayWrapper() {
