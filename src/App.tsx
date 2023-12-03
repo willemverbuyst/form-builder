@@ -7,8 +7,7 @@ const Main = styled.main`
   height: calc(100vh - 2rem);
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  gap: 1rem;
+  padding: 0 1rem;
 `;
 
 function App() {

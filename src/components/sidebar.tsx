@@ -5,12 +5,16 @@ import Card from "./wrappers/card";
 
 const Section = styled.section`
   width: 10rem;
-  padding: 0.5rem;
 `;
 
 export default function Sidebar() {
   return (
-    <Card>
+    <Card
+      customStyles={{
+        padding: "0.5rem",
+        backgroundColor: "var(--color-blue-dark)",
+      }}
+    >
       <Section>
         <SidebarBtnElement formElement={FormElements.TextField} />
       </Section>

@@ -2,10 +2,9 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 
 const Section = styled.section`
-  border: 3px solid var(--color-blue);
   border-radius: 10px;
-  background-color: var(--color-white);
-  color: var(--color-teal);
+  background-color: inherit;
+  color: var(--color-white);
 `;
 
 type CardProps = {

@@ -16,20 +16,23 @@ const Section = styled.section`
 
 const Container = styled.div`
   flex: 1;
-  background-color: var(--color-white);
+  border: 2px dashed var(--color-blue-light);
   padding: 0.5rem;
   gap: 1rem;
+  height: 50%;
 `;
 
 const DropInstruction = styled.div`
+  height: 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--color-white);
 `;
 
 const Droppable = styled.div`
-  height: 5rem;
-  background-color: var(--color-grey);
+  height: 10rem;
+  background-color: var(--color-blue-light);
   border-radius: 5px;
 `;
 
@@ -111,7 +114,13 @@ export default function Designer() {
   return (
     <Section>
       <Sidebar />
-      <Card customStyles={{ flex: 1 }}>
+      <Card
+        customStyles={{
+          flex: 1,
+          padding: "0.5rem",
+          backgroundColor: "var(--color-blue-dark)",
+        }}
+      >
         <Container ref={droppable.setNodeRef}>
           {!droppable.isOver && elements.length === 0 && (
             <DropInstruction>

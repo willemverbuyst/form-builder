@@ -9,7 +9,7 @@ import {
 const type: ElementsType = "TextField";
 
 const extraAttributes = {
-  label: "Text field",
+  label: "Text Field",
   helperText: "This is a text input",
   required: false,
   placeholder: "Some value",

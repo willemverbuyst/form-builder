@@ -38,21 +38,25 @@ const MouseIsOverBtn = styled.div`
 `;
 
 const Wrapper = styled.section`
-  background-color: var(--color-grey);
+  background-color: var(--color-blue-medium);
   border-radius: 10px;
   position: relative;
 
   &.mouse {
-    background-color: #333;
+    background-color: var(--color-blue-light);
   }
 `;
 const DesignerElementSection = styled.section`
   &.topHalf {
-    border-top: 10px solid var(--color-teal);
+    border-top: 5px solid var(--color-grey);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 
   &.bottomHalf {
-    border-bottom: 10px solid var(--color-teal);
+    border-bottom: 5px solid var(--color-grey);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 `;
 
