@@ -1,4 +1,4 @@
-import { useDroppable } from "@dnd-kit/core";
+import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { useState } from "react";
 import styled from "styled-components";
 import DeleteBtn from "./buttons/deleteBtn";
@@ -41,10 +41,18 @@ const Wrapper = styled.section`
   background-color: var(--color-grey);
   border-radius: 10px;
   position: relative;
-  height: 10rem;
 
   &.mouse {
-    border: 2px solid var(--color-teal);
+    background-color: #333;
+  }
+`;
+const DesignerElementSection = styled.section`
+  &.topHalf {
+    border-top: 10px solid var(--color-teal);
+  }
+
+  &.bottomHalf {
+    border-bottom: 10px solid var(--color-teal);
   }
 `;
 
@@ -53,6 +61,7 @@ export default function DesignerElementWrapper({
 }: {
   element: FormElementInstance;
 }) {
+  console.log(element.id);
   const { removeElement } = useDesigner();
   const [mouseIsOver, setMouseIsOver] = useState(false);
 
@@ -74,10 +83,24 @@ export default function DesignerElementWrapper({
     },
   });
 
+  const draggable = useDraggable({
+    id: element.id + "-drag-handler",
+    data: {
+      type: element.type,
+      elementId: element.id,
+      isDesignerElement: true,
+    },
+  });
+
+  if (draggable.isDragging) return null;
+
   const DesignerElement = FormElements[element.type].designerComponent;
 
   return (
     <Wrapper
+      ref={draggable.setNodeRef}
+      {...draggable.listeners}
+      {...draggable.attributes}
       onMouseEnter={() => {
         setMouseIsOver(true);
       }}
@@ -101,9 +124,13 @@ export default function DesignerElementWrapper({
           </MouseIsOverBtn>
         </>
       )}
-      <div>
+      <DesignerElementSection
+        className={
+          topHalf.isOver ? "topHalf" : bottomHalf.isOver ? "bottomHalf" : ""
+        }
+      >
         <DesignerElement elementInstance={element} />
-      </div>
+      </DesignerElementSection>
     </Wrapper>
   );
 }
